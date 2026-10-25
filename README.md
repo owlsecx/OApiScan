@@ -18,22 +18,18 @@
 
 ## 📌 Overview
 
-REST / GraphQL API security auditor (OpenAPI-driven)
+OApiScan is a REST and GraphQL API security auditor that parses OpenAPI 2.0/3.x specifications (or plain endpoint lists) and runs a passive audit by default. With explicit authorisation it can enable benign active checks — method tampering, missing-auth access, BOLA/IDOR hints, CORS and security-header probes and a polite rate-limit burst. Findings are mapped to the OWASP API Security Top 10 (2023) with severity, remediation and a risk score.
 
 ---
 
 ## ✨ Features
 
-- Own OpenAPI 2.0 (Swagger) / 3.0 / 3.1 JSON parser with local $ref resolution, servers / basePath, security schemes, parameters, request bodies and responses
-- Plain endpoint-list loader ("GET /users/{id}" or URLs)
-- Passive endpoint audit — missing auth, unsafe verbs, deprecated ops, rate-limit hints, verbose error schemas, sensitive params in query, mass-assignment hints, HTTP servers, weak auth schemes (basic / apiKey in query)
-- Active checks (opt-in with --active, urllib, rate-limited): method tampering, missing-auth access, BOLA/IDOR hint, CORS misconfig, security headers, verbose errors, content-type confusion, enumeration / large response
-- Auth tester — with vs without token comparison
-- GraphQL — introspection detection, field-level hints
-- Polite rate-limit probe (small burst → 429 expected)
-- OWASP API Security Top 10 (2023) mapping, severity, remediation, risk score
-- Export TXT / MD / JSON / CSV with location chooser
-- Full CLI mode (--spec, --url, --active, --fail-on ...)
+- Built-in OpenAPI 2.0/3.0/3.1 parser with local $ref resolution
+- Passive audit: missing auth, unsafe verbs, sensitive query params, weak schemes
+- Opt-in active checks (--active): method tampering, BOLA/IDOR hints, CORS, headers
+- Authentication tester comparing responses with and without a token
+- GraphQL introspection detection and polite rate-limit probing
+- OWASP API Top 10 (2023) mapping and export to TXT/MD/JSON/CSV
 
 ---
 
@@ -47,7 +43,10 @@ REST / GraphQL API security auditor (OpenAPI-driven)
 ## 🚀 Usage
 
 ```bash
-./OApiScan
+./OApiScan --spec openapi.json
+./OApiScan --url https://api.example.com --active --token "Bearer xyz"
+./OApiScan --graphql https://api.example.com/graphql --format json -o report.json
+./OApiScan --help
 ```
 
 ---
