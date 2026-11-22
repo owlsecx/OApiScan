@@ -53,7 +53,7 @@ OApiScan is a REST and GraphQL API security auditor that parses OpenAPI 2.0/3.x 
 
 ## 📦 Part of OwlSec Toolkit
 
-This tool is part of the **OwlSec** suite — a collection of 300+ security and privacy tools.
+This tool is part of the **OwlSec** suite — a collection of 275+ security and privacy tools.
 
 🔗 [owlsec.org](https://owlsec.org)
 
